@@ -9,6 +9,11 @@ namespace Heros {
 std::unordered_map<std::string, Reaction> key_bindings = {
     {"Left",
      []() {
+         std::make_unique<Move>(Vec{-1, 0});
+         //  if (tile.is_wall()) {
+         //      std::make_unique<Move>(Vec{1, 0});
+         //      Result failure();
+         //  }
          return std::make_unique<Move>(Vec{-1, 0});
      }},
     {"Right",

@@ -1,3 +1,7 @@
 #include "move.h"
 
-int Move::move(Vec direction) {}
+#include "action.h"
+
+Move::Move(Vec direction) : direction{direction} {}
+
+bool move_allowed() {}
