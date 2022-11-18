@@ -3,17 +3,13 @@
 #include "herotype.h"
 #include "move.h"
 #include "none.h"
+#include "rest.h"
 
 namespace Heros {
 
 std::unordered_map<std::string, Reaction> key_bindings = {
     {"Left",
      []() {
-         std::make_unique<Move>(Vec{-1, 0});
-         //  if (tile.is_wall()) {
-         //      std::make_unique<Move>(Vec{1, 0});
-         //      Result failure();
-         //  }
          return std::make_unique<Move>(Vec{-1, 0});
      }},
     {"Right",
@@ -28,6 +24,10 @@ std::unordered_map<std::string, Reaction> key_bindings = {
      []() {
          return std::make_unique<Move>(Vec{0, -1});
      }},
+    // {"e",
+    //  []() {
+    //      return Result rest();
+    //  }},
 };
 
 constexpr int default_speed{8};

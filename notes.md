@@ -17,3 +17,7 @@ key_bindings["d"] = reaction/function
     {"Up", move_up}
     {"Down", move_down}
 }
+
+Result  success()
+        failure()
+        alternative(  Open door  )
