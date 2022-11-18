@@ -24,11 +24,9 @@ std::unordered_map<std::string, Reaction> key_bindings = {
      []() {
          return std::make_unique<Move>(Vec{0, -1});
      }},
-    // {"e",
-    //  []() {
-    //      return Result rest();
-    //  }},
-};
+    {"e", []() {
+         return std::make_unique<Move>(Vec{0, 0});
+     }}};
 
 constexpr int default_speed{8};
 const HeroType necromancer{"necromancer", default_speed, 1,
