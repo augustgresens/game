@@ -14,7 +14,7 @@ Result Move::perform(Engine& engine) {
         return failure();
     } else if (tile.is_door() || tile.actor) {
         actor->move_to(new_position);
-        return alternative(OpenDoor());
+        return alternative(OpenDoor{position});
     } else {
         actor->change_direction(direction);
         actor->move_to(new_position);

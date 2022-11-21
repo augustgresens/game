@@ -29,3 +29,10 @@ Move(position)
             return alternative(openDoor(door));
         }
     }
+
+    if(tile.is_walkable() == true) {
+        return success();
+    }
+    else {
+        return alternative{position};
+    }
