@@ -1,7 +1,5 @@
 #include "closedoor.h"
 
-#include <iostream>
-
 #include "actor.h"
 #include "engine.h"
 
@@ -15,9 +13,8 @@ Result CloseDoor::perform(Engine& engine) {
             Door& door = engine.dungeon.doors.at(neighbor);
             door.close();
             closed_any_doors = true;
-            std::cout << "door at " << neighbor << '\n';
         } else {
-            std::cout << "floor at " << neighbor << '\n';
+            closed_any_doors = false;
         }
     }
     if (closed_any_doors) {
