@@ -1,9 +1,8 @@
 #include "move.h"
 
-#include <iostream>
-
 #include "actor.h"
 #include "engine.h"
+#include "opendoor.h"
 
 Move::Move(Vec direction) : direction{direction} {}
 
@@ -14,7 +13,8 @@ Result Move::perform(Engine& engine) {
     if (tile.is_wall() || tile.actor) {
         return failure();
     } else if (tile.is_door() || tile.actor) {
-        // return alternative();
+        actor->move_to(new_position);
+        return alternative(OpenDoor());
     } else {
         actor->change_direction(direction);
         actor->move_to(new_position);
