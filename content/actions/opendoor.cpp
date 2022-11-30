@@ -2,6 +2,7 @@
 
 #include "actor.h"
 #include "engine.h"
+#include "updatefov.h"
 
 Result OpenDoor::perform(Engine& engine) {
     Vec position = actor->get_position();
@@ -10,6 +11,7 @@ Result OpenDoor::perform(Engine& engine) {
     for (const Vec& neighbor : neighbors) {
         Tile& tile = engine.dungeon.tiles(neighbor);
         if (tile.is_door()) {
+            tile.walkable = true;
             Door& door = engine.dungeon.doors.at(neighbor);
             door.open();
             opened_any_doors = true;
@@ -18,6 +20,7 @@ Result OpenDoor::perform(Engine& engine) {
         }
     }
     if (opened_any_doors) {
+        engine.events.add(UpdateFOV{});
         return success();
     } else {
         return failure();

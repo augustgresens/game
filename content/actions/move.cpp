@@ -12,9 +12,11 @@ Result Move::perform(Engine& engine) {
     Tile& tile = engine.dungeon.tiles(new_position);
     if (tile.is_wall() || tile.actor) {
         return failure();
-    } else if (tile.is_door() || tile.actor) {
-        actor->move_to(new_position);
-        return alternative(OpenDoor{position});
+    } else if (tile.is_door()) {
+        Door& door = engine.dungeon.doors.at(position);
+        if (!tile.is_door()) {
+            return alternative(OpenDoor{position});
+        }
     } else {
         actor->change_direction(direction);
         actor->move_to(new_position);
