@@ -4,21 +4,20 @@
 #include "engine.h"
 #include "updatefov.h"
 
+OpenDoor::OpenDoor(Vec position) : position{position} {}
+
 Result OpenDoor::perform(Engine& engine) {
-    Vec position = actor->get_position();
-    std::vector<Vec> neighbors = engine.dungeon.neighbors(position);
     bool opened_any_doors = false;
-    for (const Vec& neighbor : neighbors) {
-        Tile& tile = engine.dungeon.tiles(neighbor);
-        Door& door = engine.dungeon.doors.at(neighbor);
-        if (tile.is_door()) {
-            Door& door = engine.dungeon.doors.at(neighbor);
-            if (!door.is_open()) {
-                door.open();
-                opened_any_doors = true;
-            }
+    Tile tile = engine.dungeon.tiles(position);
+    if (tile.is_door()) {
+        Door& door = engine.dungeon.doors.at(position);
+        if (!door.is_open()) {
+            door.open();
+            tile.walkable = true;
+            opened_any_doors = true;
         }
     }
+
     if (opened_any_doors) {
         engine.events.add(UpdateFOV{});
         return success();

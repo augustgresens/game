@@ -8,8 +8,7 @@
 Move::Move(Vec direction) : direction{direction} {}
 
 Result Move::perform(Engine& engine) {
-    Vec position = actor->get_position();
-    Vec new_position = position + direction;
+    Vec new_position = actor->get_position() + direction;
     Tile& tile = engine.dungeon.tiles(new_position);
     if (tile.is_wall()) {
         return failure();
@@ -18,7 +17,7 @@ Result Move::perform(Engine& engine) {
     //     return alternative(Attack{*tile.actor});
     // }
     if (tile.is_door()) {
-        Door& door = engine.dungeon.doors.at(position);
+        Door& door = engine.dungeon.doors.at(new_position);
         if (!door.is_open()) {
             return alternative(OpenDoor{new_position});
         }
