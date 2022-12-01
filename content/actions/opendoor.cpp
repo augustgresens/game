@@ -10,13 +10,13 @@ Result OpenDoor::perform(Engine& engine) {
     bool opened_any_doors = false;
     for (const Vec& neighbor : neighbors) {
         Tile& tile = engine.dungeon.tiles(neighbor);
+        Door& door = engine.dungeon.doors.at(neighbor);
         if (tile.is_door()) {
-            tile.walkable = true;
             Door& door = engine.dungeon.doors.at(neighbor);
-            door.open();
-            opened_any_doors = true;
-        } else {
-            opened_any_doors = false;
+            if (!door.is_open()) {
+                door.open();
+                opened_any_doors = true;
+            }
         }
     }
     if (opened_any_doors) {

@@ -1,5 +1,7 @@
 #pragma once
 #include "engine.h"
+#include "monstertype.h"
+#include "rest.h"
 
 namespace Monsters {
 std::unique_ptr<Action> default_behavior(Engine& engine, Monster& me);
@@ -15,6 +17,4 @@ MonsterType goblin() {
     return {"goblin", default_speed, health, std::make_shared<None>(),
             default_behavior};
 }
-}
-
-    
+}  // namespace Monsters

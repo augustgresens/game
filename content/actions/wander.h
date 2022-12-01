@@ -1,7 +1,7 @@
-// #pragma once
-// #include "action.h"
-// #include "vec.h"
+#pragma once
+#include "action.h"
+#include "vec.h"
 
-// class Wander : public Action {
-//     Result perform(Engine& engine) override;
-// };
+class Wander : public Action {
+    Result perform(Engine& engine) override;
+};
