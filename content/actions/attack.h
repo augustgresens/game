@@ -1,6 +1,11 @@
 #pragma once
 #include "action.h"
+
 class Attack : public Action {
-    // Attack(Actor& defender);
-    // void perform(Actor& defender);
+public:
+    Attack(Actor& defender);
+    Result perform(Engine& engine) override;
+
+private:
+    Actor& defender;
 };

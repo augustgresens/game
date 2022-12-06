@@ -13,9 +13,9 @@ Result Move::perform(Engine& engine) {
     if (tile.is_wall()) {
         return failure();
     }
-    // if (tile.actor) {
-    //     return alternative(Attack{*tile.actor});
-    // }
+    if (tile.actor) {
+        return alternative(Attack{*tile.actor});
+    }
     if (tile.is_door()) {
         Door& door = engine.dungeon.doors.at(new_position);
         if (!door.is_open()) {
