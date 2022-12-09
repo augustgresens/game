@@ -8,6 +8,7 @@
 #include "none.h"
 #include "opendoor.h"
 #include "rest.h"
+#include "shoot.h"
 
 namespace Heros {
 
@@ -29,7 +30,9 @@ std::unordered_map<std::string, Reaction> key_bindings = {
          return std::make_unique<Move>(Vec{0, -1});
      }},
     {"R", []() { return std::make_unique<Rest>(); }},
-    {"C", []() { return std::make_unique<CloseDoor>(); }}};
+    {"C", []() { return std::make_unique<CloseDoor>(); }}
+    // ,{"E", []() { return std::make_unique<Shoot>(defender, Vec); }}
+};
 
 constexpr int default_speed{8};
 const HeroType necromancer{"dragon", default_speed, 10,

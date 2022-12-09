@@ -15,7 +15,7 @@ Projectile::Projectile(Sprite& sprite, Vec direction)
         starting_angle = 90;
     } else if (direction == Vec{0, 1}) {
         starting_angle = 0;
-    } else if (direction == Vec{0, 1}) {
+    } else if (direction == Vec{0, -1}) {
         starting_angle = 180;
     }
 }
@@ -29,11 +29,13 @@ void Projectile::execute(Engine&) {
         sprite.shift.y += duration * frame_count;
     } else if (starting_angle == 0 || starting_angle == 180) {
         sprite.shift.y -= duration * frame_count;
-    }  // assuming cartesian
+    }
 }
 
-void Projectile::when_done(Engine& engine) {
+void Projectile::when_done(Engine&) {
     sprite = copy;
 
     // engine.events.add(Hit{defender, damage});
 }
+
+// how do I add distance from shoot.cpp
