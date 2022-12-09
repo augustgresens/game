@@ -1,11 +1,11 @@
 #pragma once
 
-#include "weapon.h"
-
-#include <memory>
 #include <functional>
+#include <memory>
 #include <string>
 #include <unordered_map>
+
+#include "weapon.h"
 
 // forward declaration
 class Action;
@@ -23,4 +23,3 @@ struct HeroType {
     // function that produces an action ('Move actor left')
     std::unordered_map<std::string, Reaction> key_bindings;
 };
-

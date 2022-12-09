@@ -36,3 +36,5 @@ Move(position)
     else {
         return alternative{position};
     }
+
+np = actor->get_position() + actor->get_direction()

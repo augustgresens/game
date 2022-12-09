@@ -1,9 +1,9 @@
 #pragma once
-
+#include "engine.h"
 #include "weapon.h"
 
-class None : public Weapon {
+class Spear : public Weapon {
 public:
-    None();
+    Spear(int damage);
     void use(Engine& engine, Actor& attacker, Actor& defender) override;
 };

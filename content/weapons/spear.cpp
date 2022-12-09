@@ -1,11 +1,11 @@
-#include "bow.h"
+#include "spear.h"
 
 #include "hit.h"
 #include "swing.h"
 
-Bow::Bow(int damage) : Weapon{"bow", damage} {}
+Spear::Spear(int damage) : Weapon{"spear", damage} {}
 
-void Bow::use(Engine& engine, Actor& attacker, Actor& defender) {
+void Spear::use(Engine& engine, Actor& attacker, Actor& defender) {
     Vec direction = defender.get_position() - attacker.get_position();
     engine.events.add(Swing{sprite, direction, defender, damage});
 }

@@ -3,6 +3,7 @@
 #include "bow.h"
 #include "closedoor.h"
 #include "herotype.h"
+#include "mace.h"
 #include "move.h"
 #include "none.h"
 #include "opendoor.h"
@@ -31,6 +32,6 @@ std::unordered_map<std::string, Reaction> key_bindings = {
     {"C", []() { return std::make_unique<CloseDoor>(); }}};
 
 constexpr int default_speed{8};
-const HeroType necromancer{"necromancer", default_speed, 10,
-                           std::make_shared<Bow>(2), key_bindings};
+const HeroType necromancer{"dragon", default_speed, 10,
+                           std::make_shared<Mace>(3), key_bindings};
 }  // namespace Heros
