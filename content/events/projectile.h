@@ -12,4 +12,5 @@ private:
     Sprite& sprite;
     Sprite copy;
     double starting_angle;
+    Vec position;
 };
