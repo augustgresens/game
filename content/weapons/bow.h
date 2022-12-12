@@ -12,5 +12,4 @@ public:
 private:
     Vec starting_position;
     Vec ending_position;
-    Sprite& sprite;
 };

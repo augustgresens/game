@@ -5,7 +5,6 @@
 
 class Shoot : public Action {
 public:
-    Shoot();
     Result perform(Engine& engine) override;
 
 private:
@@ -16,6 +15,5 @@ private:
     bool open_tile;
     double distance;
     int damage;
-    Sprite& sprite;
     Sprite arrow;
 };

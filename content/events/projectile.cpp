@@ -5,7 +5,7 @@
 
 constexpr int duration = 5;
 
-Projectile::Projectile(Sprite& sprite, Vec direction, Vec starting_position,
+Projectile::Projectile(Sprite sprite, Vec direction, Vec starting_position,
                        Vec ending_position, int damage)
     : Event{duration},
       sprite{sprite},
@@ -25,20 +25,14 @@ Projectile::Projectile(Sprite& sprite, Vec direction, Vec starting_position,
 }
 
 void Projectile::execute(Engine& engine) {
-    // The issue might be here with sprite?
-    arrow.angle = sprite.angle;
-    if (frame_count == 0) {
-        AnimatedSprite sprite = engine.graphics.get_animated_sprite("arrow", 1);
-        number_of_frames = sprite.number_of_frames();
-    }
-    engine.camera.add_overlay(position, sprite.get_sprite());
-    // arrow for sprite.get_sprite()?
-    sprite.update();
+    engine.camera.add_overlay(position, arrow);
     position = position + direction;
 }
 
 void Projectile::when_done(Engine& engine) {
     ending_position = position;
     Tile& tile = engine.dungeon.tiles(ending_position);
-    engine.events.add(Hit{*tile.actor, damage});
+    if (tile.actor) {
+        engine.events.add(Hit{*tile.actor, damage});
+    }
 }
