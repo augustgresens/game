@@ -2,16 +2,14 @@
 
 #include "engine.h"
 #include "hit.h"
-
-constexpr int duration = 5;
+#include "vec.h"
 
 Projectile::Projectile(Sprite sprite, Vec direction, Vec starting_position,
                        Vec ending_position, int damage)
-    : Event{duration},
+    : Event{static_cast<int>(distance(ending_position, starting_position))},
       sprite{sprite},
       direction{direction},
-      starting_position{starting_position},
-      ending_position{ending_position},
+      position{starting_position},
       damage{damage} {
     if (direction == Vec{1, 0}) {
         sprite.angle = 90;
@@ -30,8 +28,7 @@ void Projectile::execute(Engine& engine) {
 }
 
 void Projectile::when_done(Engine& engine) {
-    ending_position = position;
-    Tile& tile = engine.dungeon.tiles(ending_position);
+    Tile& tile = engine.dungeon.tiles(position);
     if (tile.actor) {
         engine.events.add(Hit{*tile.actor, damage});
     }

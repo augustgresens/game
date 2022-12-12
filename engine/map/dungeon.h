@@ -1,17 +1,17 @@
 #pragma once
 
-#include "vec.h"
-#include "room.h"
-#include "tile.h"
-#include "grid.h"
-#include "door.h"
-#include "animatedsprite.h"
-#include "fog.h"
-#include "pathfinding.h"
-#include <vector>
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
 
+#include "animatedsprite.h"
+#include "door.h"
+#include "fog.h"
+#include "grid.h"
+#include "pathfinding.h"
+#include "room.h"
+#include "tile.h"
+#include "vec.h"
 
 class Dungeon {
 public:
@@ -43,14 +43,14 @@ public:
     // computes a series of open tiles from start to stop
     Path calculate_path(const Vec& start, const Vec& stop) const;
 
-    // individual tiles can be access using integers x and y: Tile& tile = tiles(x, y)
-    // OR
-    // Vec position{x, y}; Tile& tile = tiles(position)
+    // individual tiles can be access using integers x and y: Tile& tile =
+    // tiles(x, y) OR Vec position{x, y}; Tile& tile = tiles(position)
     Grid<Tile> tiles;
 
     // other elements of the dungeon
     std::vector<Room> rooms;
     std::unordered_map<Vec, Door> doors;
-    std::unordered_map<Vec, AnimatedSprite> doodads; // decorations on tiles (e.g. torches)
-    Fog fog; // used for computing which tiles are visible for hero
+    std::unordered_map<Vec, AnimatedSprite>
+        doodads;  // decorations on tiles (e.g. torches)
+    Fog fog;      // used for computing which tiles are visible for hero
 };
