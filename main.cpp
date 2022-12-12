@@ -7,7 +7,7 @@ int main() {
     Settings settings = read_settings(filename);
     Engine engine{settings};
 
-    engine.create_hero(Heros::necromancer);
+    engine.create_hero(Heros::august);
     for (int i = 0; i < 6; ++i) {
         engine.create_monster(Monsters::goblin());
         engine.create_monster(Monsters::orc_masked());

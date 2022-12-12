@@ -1,16 +1,19 @@
 #include "shoot.h"
 
+#include "actor.h"
 #include "attack.h"
 #include "engine.h"
 #include "projectile.h"
+#include "vec.h"
 
-Shoot::Shoot(Actor& defender, Vec direction)
-    : defender{defender}, direction{direction} {}
+Shoot::Shoot(int damage) : damage{damage} {}
 
 Result Shoot::perform(Engine& engine) {
+    Sprite sprite = engine.graphics.get_sprite("arrow");
     starting_position = actor->get_position();
+    direction = actor->get_direction();
+    new_position = starting_position + direction;
     while (open_tile) {
-        new_position = actor->get_position() + direction;
         Tile& tile = engine.dungeon.tiles(new_position);
         if (tile.is_wall()) {
             open_tile = false;
@@ -21,12 +24,13 @@ Result Shoot::perform(Engine& engine) {
             }
         } else if (tile.actor) {
             open_tile = false;
-            return alternative(Attack{*tile.actor});  // alternative here?
-        }                                             // increment tiles
+            engine.events.add(Projectile{sprite, direction, starting_position,
+                                         ending_position});
+            return alternative(Attack{*tile.actor});
+        } else {
+            new_position = new_position + direction;
+        }
     }
-
-    return success();  // return the distance?
+    ending_position = new_position;
+    return success();
 }
-
-// If the position is at 0,0 and the direction is facing right does position +
-// direction equal 1,0

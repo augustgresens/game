@@ -1,5 +1,6 @@
 #include "bow.h"
 
+#include "actor.h"
 #include "hit.h"
 #include "projectile.h"
 #include "swing.h"
@@ -11,6 +12,9 @@ void Bow::use(Engine& engine, Actor& attacker, Actor& defender) {
     if (distance(defender.get_position(), attacker.get_position()) == 1) {
         engine.events.add(Swing{sprite, direction, defender, damage});
     } else {
-        engine.events.add(Projectile{sprite, direction});
+        starting_position = attacker.get_position();
+        ending_position = defender.get_position();
+        engine.events.add(
+            Projectile{sprite, direction, starting_position, ending_position});
     }
 }

@@ -4,13 +4,15 @@
 
 class Shoot : public Action {
 public:
-    Shoot(Actor& defender, Vec direction);
+    Shoot(int damage);
     Result perform(Engine& engine) override;
 
 private:
-    Actor& defender;
     Vec direction;
     Vec starting_position;
     Vec new_position;
+    Vec ending_position;
     bool open_tile = true;
+    double distance;
+    int damage;
 };
