@@ -34,7 +34,7 @@ void Projectile::execute(Engine& engine) {
     engine.camera.add_overlay(position, sprite.get_sprite());
     // arrow for sprite.get_sprite()?
     sprite.update();
-    // position = position + direction;
+    position = position + direction;
 }
 
 void Projectile::when_done(Engine& engine) {
