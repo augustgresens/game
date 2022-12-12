@@ -8,12 +8,6 @@ public:
     Result perform(Engine& engine) override;
 
 private:
-    Vec direction;
-    Vec starting_position;
-    Vec new_position;
-    Vec ending_position;
-    bool open_tile;
-    double distance;
     int damage;
     Sprite arrow;
 };
