@@ -1,10 +1,11 @@
 #pragma once
 #include "action.h"
+#include "sprite.h"
 #include "vec.h"
 
 class Shoot : public Action {
 public:
-    Shoot(int damage);
+    Shoot();
     Result perform(Engine& engine) override;
 
 private:
@@ -12,7 +13,9 @@ private:
     Vec starting_position;
     Vec new_position;
     Vec ending_position;
-    bool open_tile = true;
+    bool open_tile;
     double distance;
     int damage;
+    Sprite& sprite;
+    Sprite arrow;
 };

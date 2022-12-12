@@ -1,5 +1,6 @@
 #pragma once
 #include "engine.h"
+#include "sprite.h"
 #include "vec.h"
 #include "weapon.h"
 
@@ -11,4 +12,5 @@ public:
 private:
     Vec starting_position;
     Vec ending_position;
+    Sprite& sprite;
 };

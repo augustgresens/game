@@ -33,7 +33,7 @@ std::unordered_map<std::string, Reaction> key_bindings = {
      }},
     {"R", []() { return std::make_unique<Rest>(); }},
     {"C", []() { return std::make_unique<CloseDoor>(); }},
-    {"E", []() { return std::make_unique<Shoot>(3); }}};
+    {"E", []() { return std::make_unique<Shoot>(); }}};
 
 constexpr int default_speed{8};
 const HeroType august{"dragon", default_speed, 10, std::make_shared<Bow>(3),

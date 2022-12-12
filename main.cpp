@@ -8,7 +8,7 @@ int main() {
     Engine engine{settings};
 
     engine.create_hero(Heros::august);
-    for (int i = 0; i < 6; ++i) {
+    for (int i = 0; i < 4; ++i) {
         engine.create_monster(Monsters::goblin());
         engine.create_monster(Monsters::orc_masked());
         engine.create_monster(Monsters::demon());
