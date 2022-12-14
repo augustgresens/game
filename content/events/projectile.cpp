@@ -1,20 +1,19 @@
 #include "projectile.h"
 
-#include "actor.h"
 #include "camera.h"
 #include "event.h"
 #include "sprite.h"
 
-Projectile::Projectile(direction, starting_position, projectile_distance)
+Projectile::Projectile(Vec direction, Vec starting_position,
+                       int projectile_distance)
     : Event{projectile_distance},
       direction{direction},
-      starting_position{starting_position},
+      position{starting_position},
       projectile_length{projectile_distance} {}
 
 void Projectile::execute(Engine& engine) {
+    Sprite arrow = engine.graphics.get_sprite("arrow");
     if (frame_count == 0) {
-        direction = actor->get_direction();
-        arrow = engine.graphics.get_sprite("arrow");  // Sprite arrow?
         if (direction == Vec{1, 0}) {
             arrow.angle = 90;
         } else if (direction == Vec{-1, 0}) {
@@ -25,7 +24,7 @@ void Projectile::execute(Engine& engine) {
             arrow.angle = 180;
         }
     }
-    position = position + direction;  // Vec position?
+    position = position + direction;
     engine.camera.add_overlay(position, arrow);
 }
 
