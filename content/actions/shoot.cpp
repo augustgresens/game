@@ -1,10 +1,9 @@
 #include "shoot.h"
 
-#include "actor.h"
-#include "attack.h"
-#include "engine.h"
+#include "hit.h"
 #include "projectile.h"
-#include "tile.h"
+
+Shoot::Shoot() {}
 
 Result Shoot::perform(Engine& engine) {
     Vec direction = actor->get_direction();
@@ -21,13 +20,11 @@ Result Shoot::perform(Engine& engine) {
         new_position = new_position + direction;
         tile = engine.dungeon.tiles(new_position);
     }
-    Vec ending_position = new_position;
-    arrow = engine.graphics.get_sprite("arrow");
+    int projectile_length =
+        static_cast<int>(distance(new_position, starting_position));
+    Projectile{direction, starting_position, projectile_length};
     if (tile.actor) {
-        actor->attack(*tile.actor);
-    } else {
-        engine.events.add(Projectile{arrow, direction, starting_position,
-                                     ending_position, 0});
+        engine.events.add(Hit{*tile.actor, 4});
     }
     return success();
 }

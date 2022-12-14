@@ -1,13 +1,12 @@
 #pragma once
-#include "action.h"
-#include "sprite.h"
-#include "vec.h"
+
+#include "engine.h"
 
 class Shoot : public Action {
 public:
+    Shoot();
     Result perform(Engine& engine) override;
 
 private:
-    int damage;
-    Sprite arrow;
+    Vec position;
 };
