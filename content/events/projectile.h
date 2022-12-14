@@ -1,22 +1,19 @@
 #pragma once
-#include "actor.h"
-#include "camera.h"
-#include "event.h"
-#include "sprite.h"
+#include "engine.h"
+#include "vec.h"
 
 class Projectile : public Event {
 public:
-    Projectile(Sprite sprite, Vec direction, Vec starting_position,
-               Vec ending_position, int damage);
+    Projectile(Vec direction, Vec starting_position, int projectile_length);
     void execute(Engine& engine) override;
-    void when_done(Engine& engine) override;
+    // void when_done(Engine& engine) override;
 
 private:
-    Sprite sprite;
-    Vec direction;
+    int projectile_length;
     Vec starting_position;
-    Vec ending_position;
-    int damage;
-    Sprite arrow;
-    Vec position;
+    // Vec direction;
+
+    // Not sure if I need to have arrow and position as private data.
+    // Sprite arrow;
+    // Vec position;
 };
